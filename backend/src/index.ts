@@ -17,6 +17,11 @@ app.get('/', (req, res) => {
   res.send('NIST-800 Compliance Dashboard Backend');
 });
 
+// Health check endpoint
+app.get('/health', (req, res) => {
+  res.status(200).json({ status: 'healthy', timestamp: new Date().toISOString() });
+});
+
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });

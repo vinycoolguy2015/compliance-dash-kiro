@@ -1,0 +1,18 @@
+{
+  "enabled": true,
+  "name": "Terraform Quality Check",
+  "description": "Automatically runs terraform validate, terraform fmt, and tfsec security scanning when Terraform files are modified to ensure code quality and security compliance",
+  "version": "1",
+  "when": {
+    "type": "userTriggered",
+    "patterns": [
+      "**/*.tf",
+      "**/*.tfvars",
+      "**/*.hcl"
+    ]
+  },
+  "then": {
+    "type": "askAgent",
+    "prompt": "Run the following Terraform quality checks on the modified files:\n\n1. Run `terraform validate` to check configuration syntax and internal consistency\n2. Run `terraform fmt -check` to verify proper formatting (and `terraform fmt` to fix if needed)\n3. Run `tfsec` to scan for security issues and misconfigurations\n\nPlease execute these commands in the appropriate Terraform directory and report any issues found. If there are formatting issues, automatically fix them with `terraform fmt`. For validation or security issues, provide clear explanations and suggested fixes."
+  }
+}
